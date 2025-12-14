@@ -1,0 +1,42 @@
+.clock-root {
+	display: grid;
+	place-items: center;
+	padding: 16px;
+}
+
+.clock-root svg {
+	/* Ensure crisp rendering and responsive containment if parent shrinks */
+	max-width: 100%;
+	height: auto;
+}
+
+/* SVG presentation */
+.clock-face {
+  fill: #ca7b05ff; /* warm orange */
+  stroke: #60a5fa; /* blue */
+  stroke-width: 4;
+}
+
+.clock-center {
+  fill: #60a5fa;
+}
+
+/* Hands */
+.hand {
+	stroke: #e5e7eb; /* light gray */
+	stroke-linecap: round;
+}
+
+.hour-hand {
+	stroke-width: 4;
+}
+
+.minute-hand {
+	stroke-width: 3;
+}
+
+/* Shading slices */
+.clock-shade {
+	fill: rgba(96, 165, 250, 0.25); /* translucent blue */
+	stroke: none;
+}

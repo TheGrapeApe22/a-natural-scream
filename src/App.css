@@ -1,38 +1,61 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* App shell */
+.app-shell {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: grid;
+  grid-template-rows: 1fr auto; /* content + bottom tabbar */
+  background: #0f172a; /* slate-900-ish */
+  color: #e5e7eb;      /* gray-200-ish */
 }
 
-.App-link {
-  color: #61dafb;
+/* Content area */
+.content {
+  padding: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Page styles */
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Bottom tab bar */
+.tabbar {
+  position: sticky;       /* stays at bottom even with content scroll */
+  bottom: 0;
+  background: #111827;    /* gray-900 */
+  border-top: 1px solid #1f2937; /* gray-800 */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+}
+
+/* Tab buttons */
+.tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #9ca3af; /* gray-400 */
+  padding: 12px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.tab.active {
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 #60a5fa; /* blue-400 underline */
+}
+
+/* For small screens: make it touch-friendly */
+@media (hover: none) {
+  .tab {
+    padding: 16px 8px;
   }
 }

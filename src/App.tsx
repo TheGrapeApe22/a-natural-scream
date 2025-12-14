@@ -1,24 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Clock from './components/Clock';
 import './App.css';
 
+type TabKey = 'home' | 'tasks' | 'settings';
+
 function App() {
+  const [activeTab, setActiveTab] = useState<TabKey>('home');
+
+  const renderPage = () => {
+    switch (activeTab) {
+      case 'home':
+        return <div className="page">
+          <Clock />
+        </div>;
+      case 'tasks':
+        return <div className="page">Your Tasks</div>;
+      case 'settings':
+        return <div className="page">Settings</div>;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App app-shell">
+      <main className="content" role="main">
+        {renderPage()}
+      </main>
+
+      <nav className="tabbar" role="tablist" aria-label="Bottom navigation">
+        <button
+          className={`tab ${activeTab === 'home' ? 'active' : ''}`}
+          onClick={() => setActiveTab('home')}
         >
-          Learn React
-        </a>
-      </header>
+          Home
+        </button>
+        <button
+          className={`tab ${activeTab === 'tasks' ? 'active' : ''}`}
+          onClick={() => setActiveTab('tasks')}
+        >
+          Tasks
+        </button>
+        <button
+          className={`tab ${activeTab === 'settings' ? 'active' : ''}`}
+          onClick={() => setActiveTab('settings')}
+        >
+          Settings
+        </button>
+      </nav>
     </div>
   );
 }
