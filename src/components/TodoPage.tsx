@@ -35,7 +35,7 @@ export default function TodoPage() {
                         value={newText}
                         onChange={(e) => setNewText(e.target.value)}
                     />
-                    <button onClick={addTodo} className="add-button">＋</button>
+                    <button onClick={addTodo} className="add-button button">＋</button>
                 </div>
             </div>
         </div>

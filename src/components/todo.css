@@ -40,12 +40,17 @@
     outline: none;
 }
 
+/* Increase left padding when a star button is present */
+.todo-item input {
+	padding-left: 12px;
+}
+
 /* Thin separators between items inside the container */
 .todo-item + .todo-item {
 	border-top: 1px solid var(--text-color);
 }
 
-.add-button, .x-button {
+.button {
 	border: none;
 	background: none;
 	width: 24px;
@@ -54,13 +59,12 @@
 	cursor: pointer;
 	text-align: center;
 	font-size: 12px;
-	position: absolute;
-	right: 8px;
-	top: 50%;
-	transform: translateY(-50%);
-    color: var(--text-color);
+	color: var(--text-color);
+
+    display: flex; /* Makes the container a flex container */
+    justify-content: center; /* Centers horizontally */
 }
 
-.add-button:hover, .x-button:hover {
+.button:hover {
 	background: rgba(121, 121, 121, 0.1);
 }

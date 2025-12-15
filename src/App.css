@@ -1,9 +1,9 @@
 :root {
-  --text-color: #000000;
+  --text-color: #c8c8c8;
 }
 
 body {
-  --background-color: #ffffff;
+  --background-color: #444444;
   --tab-fill-color: #ffffff;
   --tab-hover-color: #cbcbcb;
   --tab-outline-color: #000000ad;
