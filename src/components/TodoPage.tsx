@@ -15,12 +15,8 @@ export default function TodoPage() {
         setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, text: newText } : t)));
     };
 
-    const [newText, setNewText] = useState("");
     const addTodo = () => {
-        const text = newText.trim();
-        if (!text) return;
-        setTodos((prev) => [...prev, { id: nextId.current++, text }]);
-        setNewText("");
+        setTodos((prev) => [...prev, { id: nextId.current++, text: "" }]);
     };
 
     return (
@@ -34,11 +30,6 @@ export default function TodoPage() {
                     <button onClick={addTodo} className="icon-button">
                         <img src={PlusIcon} alt="+" width="60px" />
                     </button>
-                    <input
-                        placeholder="Add a todo"
-                        value={newText}
-                        onChange={(e) => setNewText(e.target.value)}
-                    />
                 </div>
             </div>
         </div>
