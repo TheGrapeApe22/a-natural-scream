@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import TodoItem, { Todo } from "./TodoItem";
 import "./todo.css";
+import PlusIcon from "../assets/plus-icon.png";
 
 export default function TodoPage() {
     const [todos, setTodos] = useState<Todo[]>([
@@ -30,12 +31,14 @@ export default function TodoPage() {
                 ))}
 
                 <div className="todo-item">
+                    <button onClick={addTodo} className="icon-button">
+                        <img src={PlusIcon} alt="+" width="60px" />
+                    </button>
                     <input
                         placeholder="Add a todo"
                         value={newText}
                         onChange={(e) => setNewText(e.target.value)}
                     />
-                    <button onClick={addTodo} className="add-button button">＋</button>
                 </div>
             </div>
         </div>

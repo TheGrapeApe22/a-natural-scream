@@ -6,10 +6,6 @@
     background-color: transparent;
 }
 
-.todo-add button {
-	padding: 8px 12px;
-}
-
 .todo-list {
 	display: flex;
 	flex-direction: column;
@@ -50,7 +46,7 @@
 	border-top: 1px solid var(--text-color);
 }
 
-.button {
+.icon-button {
 	border: none;
 	background: none;
 	width: 24px;
