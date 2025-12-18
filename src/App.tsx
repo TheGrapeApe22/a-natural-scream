@@ -15,16 +15,16 @@ function App() {
   return (
     <div className="App app-shell">
       <main className="content">
-        <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} aria-hidden={activeTab !== 'todo'}>
+        <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
           <TodoPage />
         </div>
-        <div className={`page ${activeTab === 'cluster' ? 'visible' : 'hidden'}`} aria-hidden={activeTab !== 'cluster'}>
+        <div className={`page ${activeTab === 'cluster' ? 'visible' : 'hidden'}`} >
           <Clock />
         </div>
-        <div className={`page ${activeTab === 'amaj7' ? 'visible' : 'hidden'}`} aria-hidden={activeTab !== 'amaj7'}>
+        <div className={`page ${activeTab === 'amaj7' ? 'visible' : 'hidden'}`} >
           Amaj7 Clock
         </div>
-        <div className={`page ${activeTab === 'planb' ? 'visible' : 'hidden'}`} aria-hidden={activeTab !== 'planb'}>
+        <div className={`page ${activeTab === 'planb' ? 'visible' : 'hidden'}`} >
           Plan B Clock
         </div>
       </main>
