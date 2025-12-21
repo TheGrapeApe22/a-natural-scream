@@ -28,6 +28,7 @@ export default function TodoPage() {
 
     return (
         <div className="todo-page">
+            <div className="title">Todo</div>
             <div className="todo-list">
                 {todos.map((t) => (
                     <TodoItem key={t.id} todo={t} onChange={handleChange} onDelete={handleDelete} onToggleStar={handleToggleStar} />

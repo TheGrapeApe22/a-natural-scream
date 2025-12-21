@@ -1,9 +1,7 @@
 /* Minimal, clean styles for the Todo UI */
 .todo-page {
 	max-width: 520px;
-	margin: 24px auto;
-	padding: 16px;
-    background-color: transparent;
+	margin: auto;
 }
 
 .todo-list {
@@ -11,7 +9,6 @@
 	flex-direction: column;
 	border: none;
 	border-radius: 8px;
-	overflow: hidden;
 }
 
 .todo-item {
@@ -21,27 +18,25 @@
 	padding: 0;
 	position: relative;
     margin: 0;
-    padding: 8px 24px 8px 8px;
+    padding: 4px 0px 4px 2px;
 }
 
-.todo-item input {
+.todo-input {
 	flex: 1;
 	width: 100%;
+	height: min-content;
 	display: block;
 	border: none;
     color: var(--text-color);
     background-color: transparent;
     text-align: left;
     font-size: 16px;
-}
-
-.todo-item input:focus {
-    outline: none;
-}
-
-/* Increase left padding when a star button is present */
-.todo-item input {
+	resize: none;
 	padding-left: 12px;
+}
+
+.todo-input:focus {
+    outline: none;
 }
 
 /* Thin separators between items inside the container */
@@ -66,4 +61,11 @@
 
 .icon-button:hover {
 	background: rgba(121, 121, 121, 0.1);
+}
+
+.title {
+	font-size: 32px;
+	font-weight: bold;
+	margin-bottom: 16px;
+	color: var(--text-color);
 }

@@ -16,6 +16,11 @@ type TodoItemProps = {
 	onToggleStar: (id: number) => void;
 };
 
+function textAreaAdjust(element : HTMLTextAreaElement) {
+	element.style.height = "1px";
+	element.style.height = (element.scrollHeight)+"px";
+}
+
 export default function TodoItem({ todo, onChange, onDelete, onToggleStar }: TodoItemProps) {
 	return (
 		<div className="todo-item">
@@ -25,9 +30,9 @@ export default function TodoItem({ todo, onChange, onDelete, onToggleStar }: Tod
 			>
 				<img src={todo.starred ? StarFilled : StarEmpty} alt={todo.starred ? "★" : "☆"} width="36px"/>
 			</button>
-			<input
+			<textarea className="todo-input"
 				value={todo.text}
-				onChange={(e) => onChange(todo.id, e.target.value)}
+				onChange={(e) => {onChange(todo.id, e.target.value); textAreaAdjust(e.currentTarget);}}
 			/>
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
 				<img src={XIcon} alt="✕" width="36px" />
