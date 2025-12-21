@@ -1,7 +1,7 @@
 import StarFilled from "../assets/star-filled.png";
 import StarEmpty from "../assets/star-empty.png";
 import XIcon from "../assets/x-icon.png";
-import { MobileTimePicker } from "@mui/x-date-pickers";
+import { TimeField } from "@mui/x-date-pickers";
 
 export type Todo = {
 	id: number;
@@ -34,7 +34,8 @@ export default function TodoItem({ todo, onChange, onDelete, onToggleStar }: Tod
 				value={todo.text}
 				onChange={(e) => {onChange(todo.id, e.target.value); textAreaAdjust(e.currentTarget);}}
 			/>
-			<MobileTimePicker label="Start" />
+			<TimeField label="Start" />
+			<TimeField label="End" />
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
 				<img src={XIcon} alt="✕" width="36px" />
 			</button>

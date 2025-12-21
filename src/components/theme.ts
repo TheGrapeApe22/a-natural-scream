@@ -6,37 +6,19 @@ export const appTheme = createTheme({
     mode: "dark",
   },
   components: {
-    MuiMobileTimePicker: {
+    MuiTimeField: {
       defaultProps: {
         slotProps: {
           textField: {
             size: "small",
             variant: "outlined",
             sx: {
-              width: 140,
-              '& .MuiInputBase-input': { padding: '6px 8px' },
+              width: "11ch",
+              '& .MuiInputBase-input': { padding: '0px 0px' },
             },
           },
         },
       },
-    },
-    // MuiTextField: {
-    //   defaultProps: {
-    //     size: "small",
-    //     variant: "outlined",
-    //   },
-    //   styleOverrides: {
-    //     root: {
-    //       width: 140,
-    //     },
-    //   },
-    // },
-    // MuiOutlinedInput: {
-    //   styleOverrides: {
-    //     input: {
-    //       padding: "6px 8px",
-    //     },
-    //   },
-    // },
-  },
+    }
+  }
 });
