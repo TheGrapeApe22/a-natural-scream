@@ -34,7 +34,7 @@ export default function TodoItem({ todo, onChange, onDelete, onToggleStar }: Tod
 				value={todo.text}
 				onChange={(e) => {onChange(todo.id, e.target.value); textAreaAdjust(e.currentTarget);}}
 			/>
-			<MobileTimePicker label="Select Time" />
+			<MobileTimePicker label="Start" />
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
 				<img src={XIcon} alt="✕" width="36px" />
 			</button>
