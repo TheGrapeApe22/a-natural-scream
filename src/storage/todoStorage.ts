@@ -11,14 +11,14 @@ export type ListBucket = {
     nextId: number;
 };
 
-// Root persisted state containing all lists and the currently selected list.
+// todo lists data structure
 export type TodoListsState = {
     version: number;
     selectedList: string;
     lists: Record<string, ListBucket>;
 };
 
-// Returns the default initial state for todo lists.
+// default
 export function getDefaultTodoLists(): TodoListsState {
     return {
         version: TODO_STORAGE_VERSION,
@@ -29,7 +29,7 @@ export function getDefaultTodoLists(): TodoListsState {
     };
 }
 
-// Loads the todo lists state from localStorage, or undefined if missing/invalid.
+// return todo lists data from localStorage
 export function loadTodoLists(): TodoListsState | undefined {
     if (typeof window === "undefined" || !window.localStorage) return undefined;
     try {
@@ -37,7 +37,8 @@ export function loadTodoLists(): TodoListsState | undefined {
         if (!raw) return undefined;
         const parsed = JSON.parse(raw);
         return validateTodoLists(parsed) ? parsed : undefined;
-    } catch {
+    } catch (e) {
+        console.error("Failed to load todo lists from localStorage:", e);
         return undefined;
     }
 }
@@ -48,8 +49,8 @@ export function saveTodoLists(state: TodoListsState): void {
     try {
         const payload = JSON.stringify(state);
         window.localStorage.setItem(TODO_STORAGE_KEY, payload);
-    } catch {
-        // Swallow write errors; caller may choose to handle/report.
+    } catch (e) {
+        console.error("Failed to save todo lists to localStorage:", e);
     }
 }
 

@@ -2,47 +2,66 @@ import { useMemo, useState } from "react";
 import "./lists.css";
 
 type ListsProps = {
+	// Optional controlled list of list names (exclude "New").
+	lists?: string[];
+	// Optional controlled selected list name.
+	selected?: string;
 	onSelectList?: (name: string) => void;
 	onCreateList?: (name: string) => void;
 	className?: string;
 };
 
-export default function Lists({ onSelectList, onCreateList, className }: ListsProps = {}) {
-	const [lists, setLists] = useState<string[]>(["List1", "New"]);
-	const [selected, setSelected] = useState<string>("List1");
+export default function Lists({ lists, selected, onSelectList, onCreateList, className }: ListsProps = {}) {
+	// Uncontrolled fallbacks
+	const [internalLists, setInternalLists] = useState<string[]>(["List1"]);
+	const [internalSelected, setInternalSelected] = useState<string>("List1");
+
+	const isListsControlled = Array.isArray(lists);
+	const isSelectedControlled = typeof selected === "string";
+
+	const effectiveLists = isListsControlled ? (lists as string[]) : internalLists;
+	const effectiveSelected = isSelectedControlled ? (selected as string) : internalSelected;
 
 	const nextListName = useMemo(() => {
 		const base = "List";
-		const existingNumbers = lists
-			.filter((l) => l.startsWith(base) && l !== "New")
+		const existingNumbers = effectiveLists
+			.filter((l) => l.startsWith(base))
 			.map((l) => Number(l.replace(base, "")))
 			.filter((n) => !Number.isNaN(n));
 		const max = existingNumbers.length ? Math.max(...existingNumbers) : 0;
 		return `${base}${max + 1}`;
-	}, [lists]);
+	}, [effectiveLists]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const value = e.target.value;
 		if (value === "New") {
 			const name = nextListName;
-			setLists((prev) => {
-				const withoutNew = prev.filter((p) => p !== "New");
-				return [...withoutNew, name, "New"];
-			});
-			setSelected(name);
+			// Uncontrolled update: mutate local state
+			if (!isListsControlled) {
+				setInternalLists((prev) => [...prev, name]);
+			}
+			if (!isSelectedControlled) {
+				setInternalSelected(name);
+			}
 			onCreateList?.(name);
 			onSelectList?.(name);
 			return;
 		}
-		setSelected(value);
+		// Selecting existing list
+		if (!isSelectedControlled) {
+			setInternalSelected(value);
+		}
 		onSelectList?.(value);
 	};
+
+	// Compose options: current lists + trailing New
+	const optionNames = [...effectiveLists, "New"];
 
 	return (
 		<div className={["lists-dropdown", className].filter(Boolean).join(" ")}>
 			<label className="lists-label" htmlFor="lists-select">Lists</label>
-			<select id="lists-select" className="lists-select" value={selected} onChange={handleChange}>
-				{lists.map((name) => (
+			<select id="lists-select" className="lists-select" value={effectiveSelected} onChange={handleChange}>
+				{optionNames.map((name) => (
 					<option key={name} value={name}>
 						{name}
 					</option>
