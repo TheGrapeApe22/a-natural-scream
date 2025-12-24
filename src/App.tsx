@@ -23,7 +23,7 @@ function App() {
   const addTodo = () => {
     setListsData((prev) => {
       const bucket = prev[selectedList] ?? { todos: [], nextId: 1 };
-      const newTodo: Todo = { id: bucket.nextId, text: '', starred: false };
+      const newTodo: Todo = { id: bucket.nextId, text: '', starred: false, startTime: null, endTime: null };
       return {
         ...prev,
         [selectedList]: { todos: [...bucket.todos, newTodo], nextId: bucket.nextId + 1 },

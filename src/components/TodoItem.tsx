@@ -7,6 +7,8 @@ export type Todo = {
 	id: number;
 	text: string;
 	starred: boolean;
+	startTime: string | null;
+	endTime: string | null;
 };
 
 type TodoItemProps = {
@@ -18,6 +20,22 @@ type TodoItemProps = {
 function textAreaAdjust(element : HTMLTextAreaElement) {
 	element.style.height = "1px";
 	element.style.height = (element.scrollHeight)+"px";
+}
+
+function timeStringToDate(time: string | null): Date | null {
+	if (!time) return null;
+	const [hh, mm] = time.split(":").map((v) => Number(v));
+	if (Number.isNaN(hh) || Number.isNaN(mm)) return null;
+	const d = new Date();
+	d.setHours(hh, mm, 0, 0);
+	return d;
+}
+
+function dateToTimeString(d: Date | null): string | null {
+	if (!d) return null;
+	const hh = d.getHours().toString().padStart(2, "0");
+	const mm = d.getMinutes().toString().padStart(2, "0");
+	return `${hh}:${mm}`;
 }
 
 export default function TodoItem({ todo, onChange, onDelete }: TodoItemProps) {
@@ -33,8 +51,20 @@ export default function TodoItem({ todo, onChange, onDelete }: TodoItemProps) {
 				value={todo.text}
 				onChange={(e) => {onChange({ ...todo, text: e.target.value }); textAreaAdjust(e.currentTarget);}}
 			/>
-			<TimeField label="Start" />
-			<TimeField label="End" />
+			<TimeField
+				label="Start"
+				ampm={false}
+				format="HH:mm"
+				value={timeStringToDate(todo.startTime)}
+				onChange={(value) => onChange({ ...todo, startTime: dateToTimeString(value) })}
+			/>
+			<TimeField
+				label="End"
+				ampm={false}
+				format="HH:mm"
+				value={timeStringToDate(todo.endTime)}
+				onChange={(value) => onChange({ ...todo, endTime: dateToTimeString(value) })}
+			/>
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
 				<img src={XIcon} alt="✕" width="36px" />
 			</button>
