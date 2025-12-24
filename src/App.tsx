@@ -6,6 +6,7 @@ import TabIcon1 from './assets/todo-icon.jpg';
 import TabIcon2 from './assets/cluster-icon.png';
 import TabIcon3 from './assets/amaj7-icon.png';
 import TabIcon4 from './assets/plan-b-icon.png';
+import Lists from './components/Lists';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -15,6 +16,8 @@ function App() {
   return (
     <div className="App app-shell">
       <main className="content">
+        <div className="title">Todo</div>
+        <Lists />
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
           <TodoPage />
         </div>

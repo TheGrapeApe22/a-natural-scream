@@ -34,7 +34,6 @@ export default function TodoPage() {
         <ThemeProvider theme={appTheme}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="todo-page">
-            <div className="title">Todo</div>
             <div className="todo-list">
                 {todos.map((t) => (
                     <TodoItem key={t.id} todo={t} onChange={handleChange} onDelete={handleDelete} onToggleStar={handleToggleStar} />

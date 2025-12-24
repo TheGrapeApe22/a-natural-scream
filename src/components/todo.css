@@ -62,10 +62,3 @@
 .icon-button:hover {
 	background: rgba(121, 121, 121, 0.1);
 }
-
-.title {
-	font-size: 32px;
-	font-weight: bold;
-	margin-bottom: 16px;
-	color: var(--text-color);
-}
