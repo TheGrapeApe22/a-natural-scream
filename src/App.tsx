@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Clock from './components/Clock';
+import ClockPage from './components/ClockPage';
 import './App.css';
 import TodoPage from './components/TodoPage';
 import TabIcon1 from './assets/todo-icon.jpg';
@@ -89,48 +89,36 @@ function App() {
           />
         </div>
         <div className={`page ${activeTab === 'cluster' ? 'visible' : 'hidden'}`} >
-          <div className="title">Cluster Clock</div>
-          <Clock todos={(listsData['Cluster']).todos}
-            outlineColor="#0095ffff"
-            fillColor="#9bd5ffff"
-            shadeColor="#26c2ff7c"
-          />
-          <TodoPage
-            todos={(listsData['Cluster']).todos}
-            onAdd={() => addTodoTo('Cluster')}
-            onChange={(next) => updateTodoIn('Cluster', next)}
-            onDelete={(id) => deleteTodoFrom('Cluster', id)}
-            showTimes={true}
+          <ClockPage
+            title="Cluster Clock"
+            listKey="Cluster"
+            colors={{ outline: '#49b3ffff', fill: '#c2e5ffff', shade: '#6dd6ff7c' }}
+            listsData={listsData}
+            addTodoTo={addTodoTo}
+            updateTodoIn={updateTodoIn}
+            deleteTodoFrom={deleteTodoFrom}
           />
         </div>
         <div className={`page ${activeTab === 'amaj7' ? 'visible' : 'hidden'}`} >
-          <div className="title">Amaj7 Clock</div>
-          <Clock todos={(listsData['Plan Amaj7']).todos}
-            outlineColor="#5bbaffff"
-            fillColor="#5bbaffff"
-            shadeColor="#ccffcc"
-          />
-          <TodoPage
-            todos={(listsData['Plan Amaj7']).todos}
-            onAdd={() => addTodoTo('Plan Amaj7')}
-            onChange={(next) => updateTodoIn('Plan Amaj7', next)}
-            onDelete={(id) => deleteTodoFrom('Plan Amaj7', id)}
-            showTimes={true}
+          <ClockPage
+            title="Amaj7 Clock"
+            listKey="Plan Amaj7"
+            colors={{ outline: '#bc79ffff', fill: '#e7c1ffff', shade: '#eea3ffaa' }}
+            listsData={listsData}
+            addTodoTo={addTodoTo}
+            updateTodoIn={updateTodoIn}
+            deleteTodoFrom={deleteTodoFrom}
           />
         </div>
         <div className={`page ${activeTab === 'planb' ? 'visible' : 'hidden'}`} >
-          <div className="title">Plan B Clock</div>
-          <Clock todos={(listsData['Plan B']).todos}
-            outlineColor="#333333"
-            fillColor="#f0f0f0"
-            shadeColor="#ccffcc"
-          />
-          <TodoPage
-            todos={(listsData['Plan B']).todos}
-            onAdd={() => addTodoTo('Plan B')}
-            onChange={(next) => updateTodoIn('Plan B', next)}
-            onDelete={(id) => deleteTodoFrom('Plan B', id)}
-            showTimes={true}
+          <ClockPage
+            title="Plan B Clock"
+            listKey="Plan B"
+            colors={{ outline: '#8bac6eff', fill: '#d3ffe8ff', shade: '#8fff8f7a' }}
+            listsData={listsData}
+            addTodoTo={addTodoTo}
+            updateTodoIn={updateTodoIn}
+            deleteTodoFrom={deleteTodoFrom}
           />
         </div>
       </main>

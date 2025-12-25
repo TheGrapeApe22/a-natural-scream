@@ -14,19 +14,3 @@
 .clock-face {
 	stroke-width: 4;
 }
-
-
-/* Hands */
-.hand {
-	stroke-linecap: round;
-}
-
-.hour-hand {
-	stroke-width: 4;
-}
-
-.minute-hand {
-	stroke-width: 3;
-}
-
-/* Shading slices */

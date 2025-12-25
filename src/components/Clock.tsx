@@ -19,7 +19,7 @@ const normalize = (angle: number) => ((angle % TAU) + TAU) % TAU;
 
 export default function Clock({ todos, outlineColor, shadeColor, fillColor }: ClockProps) {
     // important settings
-    const gap = 3;
+    const gap = 0;
     const size = 400;
 
     // times
@@ -108,19 +108,20 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
                 height={size}
                 viewBox={`0 0 ${size} ${size}`}
             >
-                <circle className="clock-face" cx={cx} cy={cy} r={radius} fill={fillColor} stroke={outlineColor} />
+                <circle cx={cx} cy={cy} r={radius} fill={fillColor} />
                 {todos.map((todo, idx) => {
                     const s = getShadings(todo);
                     return (
                         <g key={idx}>
-                            <path className="clock-shade" d={arcPath(s)} fill={shadeColor} stroke="none" />
+                            <path d={arcPath(s)} fill={shadeColor} stroke="none" />
                             {arcLabel(s, todo.text)}
                         </g>
                     );
                 })}
-                <circle className="clock-center" cx={cx} cy={cy} r={gap} fill={outlineColor} />
-                <line className="hand hour-hand" x1={cx} y1={cy} x2={hx} y2={hy} stroke={outlineColor} />
-                <line className="hand minute-hand" x1={cx} y1={cy} x2={mx} y2={my} stroke={outlineColor} />
+                <line x1={cx} y1={cy} x2={hx} y2={hy} stroke={outlineColor} strokeWidth={4} strokeLinecap='round'/>
+                <line x1={cx} y1={cy} x2={mx} y2={my} stroke={outlineColor} strokeWidth={3} strokeLinecap='round' />
+                <circle cx={cx} cy={cy} r={3} fill={outlineColor} />
+                <circle cx={cx} cy={cy} r={radius} fill="transparent" stroke={outlineColor} strokeWidth={5} />
             </svg>
         </div>
     );
