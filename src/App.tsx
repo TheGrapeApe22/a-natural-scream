@@ -86,6 +86,7 @@ function App() {
             onAdd={() => addTodoTo(selectedList)}
             onChange={(next) => updateTodoIn(selectedList, next)}
             onDelete={(id) => deleteTodoFrom(selectedList, id)}
+            minimize={true}
           />
         </div>
         <div className={`page ${activeTab === 'cluster' ? 'visible' : 'hidden'}`} >

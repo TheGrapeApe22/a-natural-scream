@@ -3,24 +3,18 @@ import "./lists.css";
 
 type ListsProps = {
 	// Optional controlled list of list names (exclude "New").
-	lists?: string[];
+	lists: string[];
 	// Optional controlled selected list name.
-	selected?: string;
+	selected: string;
 	onSelectList?: (name: string) => void;
 	onCreateList?: (name: string) => void;
 	className?: string;
 };
 
-export default function Lists({ lists, selected, onSelectList, onCreateList, className }: ListsProps = {}) {
+export default function Lists({ lists, selected, onSelectList=()=>{}, onCreateList=()=>{}, className }: ListsProps) {
 	// Uncontrolled fallbacks
-	const [internalLists, setInternalLists] = useState<string[]>(["Todo", "Cluster", "Plan Amaj7", "Plan B"]);
-	const [internalSelected, setInternalSelected] = useState<string>("Todo");
-
-	const isListsControlled = Array.isArray(lists);
-	const isSelectedControlled = typeof selected === "string";
-
-	const effectiveLists = isListsControlled ? (lists as string[]) : internalLists;
-	const effectiveSelected = isSelectedControlled ? (selected as string) : internalSelected;
+	const effectiveLists = lists;
+	const effectiveSelected = selected;
 
 	const nextListName = useMemo(() => {
 		const base = "List";
@@ -36,20 +30,9 @@ export default function Lists({ lists, selected, onSelectList, onCreateList, cla
 		const value = e.target.value;
 		if (value === "New") {
 			const name = nextListName;
-			// Uncontrolled update: mutate local state
-			// if (!isListsControlled) {
-			// 	setInternalLists((prev) => [...prev, name]);
-			// }
-			// if (!isSelectedControlled) {
-			// 	setInternalSelected(name);
-			// }
 			onCreateList?.(name);
 			onSelectList?.(name);
 			return;
-		}
-		// Selecting existing list
-		if (!isSelectedControlled) {
-			setInternalSelected(value);
 		}
 		onSelectList?.(value);
 	};
@@ -70,4 +53,3 @@ export default function Lists({ lists, selected, onSelectList, onCreateList, cla
 		</div>
 	);
 }
-
