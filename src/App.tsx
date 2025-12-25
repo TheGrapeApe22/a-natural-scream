@@ -90,7 +90,11 @@ function App() {
         </div>
         <div className={`page ${activeTab === 'cluster' ? 'visible' : 'hidden'}`} >
           <div className="title">Cluster Clock</div>
-          <Clock todos={(listsData['Cluster']).todos} />
+          <Clock todos={(listsData['Cluster']).todos}
+            outlineColor="#0095ffff"
+            fillColor="#9bd5ffff"
+            shadeColor="#26c2ff7c"
+          />
           <TodoPage
             todos={(listsData['Cluster']).todos}
             onAdd={() => addTodoTo('Cluster')}
@@ -101,7 +105,11 @@ function App() {
         </div>
         <div className={`page ${activeTab === 'amaj7' ? 'visible' : 'hidden'}`} >
           <div className="title">Amaj7 Clock</div>
-          <Clock todos={(listsData['Plan Amaj7']).todos} />
+          <Clock todos={(listsData['Plan Amaj7']).todos}
+            outlineColor="#5bbaffff"
+            fillColor="#5bbaffff"
+            shadeColor="#ccffcc"
+          />
           <TodoPage
             todos={(listsData['Plan Amaj7']).todos}
             onAdd={() => addTodoTo('Plan Amaj7')}
@@ -112,7 +120,11 @@ function App() {
         </div>
         <div className={`page ${activeTab === 'planb' ? 'visible' : 'hidden'}`} >
           <div className="title">Plan B Clock</div>
-          <Clock todos={(listsData['Plan B']).todos} />
+          <Clock todos={(listsData['Plan B']).todos}
+            outlineColor="#333333"
+            fillColor="#f0f0f0"
+            shadeColor="#ccffcc"
+          />
           <TodoPage
             todos={(listsData['Plan B']).todos}
             onAdd={() => addTodoTo('Plan B')}

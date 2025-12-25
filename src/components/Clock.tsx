@@ -9,15 +9,24 @@ type Shading = {
 
 type ClockProps = {
     todos: Todo[];
+    outlineColor: string;
+    shadeColor: string;
+    fillColor: string;
 }
 
-export default function Clock({ todos }: ClockProps) {
+const TAU = Math.PI * 2;
+const normalize = (angle: number) => ((angle % TAU) + TAU) % TAU;
+
+export default function Clock({ todos, outlineColor, shadeColor, fillColor }: ClockProps) {
+    // important settings
+    const gap = 3;
+    const size = 400;
+
     // times
     const now = new Date();
     const hour = now.getHours() % 12;
     const minute = now.getMinutes();
-    // sizes
-    const size = 400;
+    // constants dependent on size
     const radius = size * 0.45;
     const cx = size / 2;
     const cy = size / 2;
@@ -45,10 +54,9 @@ export default function Clock({ todos }: ClockProps) {
         };
     }
 
-    // Build an arc path for a pie slice between angles (radians), 0 at 12 o'clock, clockwise
-    const arcPath = ({start: a1, end: a2} : Shading, r: number) => {
-        const TAU = Math.PI * 2;
-        function normalize(angle: number) { return ((angle % TAU) + TAU) % TAU; }
+    // Build an annular sector path (ring slice) between angles (radians), 0 at 12 o'clock, clockwise
+    // Starts gap px from center and ends gap px from the outer edge
+    const arcPath = ({start: a1, end: a2} : Shading) => {
         const start = normalize(a1);
         const end = normalize(a2);
         
@@ -56,12 +64,41 @@ export default function Clock({ todos }: ClockProps) {
         const sweep = sweepRaw <= 0 ? sweepRaw + TAU : sweepRaw;
         const largeArc = sweep > Math.PI ? 1 : 0;
 
-        const x1 = cx + r * Math.sin(start);
-        const y1 = cy - r * Math.cos(start);
-        const x2 = cx + r * Math.sin(end);
-        const y2 = cy - r * Math.cos(end);
+        const outerR = Math.max(0, radius - gap);
+        const innerR = Math.max(0, gap);
 
-        return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+        const x1o = cx + outerR * Math.sin(start);
+        const y1o = cy - outerR * Math.cos(start);
+        const x2o = cx + outerR * Math.sin(end);
+        const y2o = cy - outerR * Math.cos(end);
+
+        const x2i = cx + innerR * Math.sin(end);
+        const y2i = cy - innerR * Math.cos(end);
+        const x1i = cx + innerR * Math.sin(start);
+        const y1i = cy - innerR * Math.cos(start);
+
+        // Draw outer arc clockwise, then line inward, then inner arc counter-clockwise back to start
+        return `M ${x1o} ${y1o} A ${outerR} ${outerR} 0 ${largeArc} 1 ${x2o} ${y2o} L ${x2i} ${y2i} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x1i} ${y1i} Z`;
+    }
+
+    const arcLabel = ({start: a1, end: a2}: Shading, text: string) => {
+        const start = normalize(a1);
+        const end = normalize(a2);
+        const sweepRaw = end - start;
+        const sweep = sweepRaw <= 0 ? sweepRaw + TAU : sweepRaw;
+        const mid = start + sweep / 2;
+        
+        // center of mass formula
+        const r = 4*radius*Math.sin(sweep/2)/(3*sweep);
+
+        const lx = cx + r * Math.sin(mid);
+        const ly = cy - r * Math.cos(mid);
+
+        return (
+            <text x={lx} y={ly} textAnchor="middle" dominantBaseline="middle" className="clock-label">
+                {text}
+            </text>
+        );
     }
 
     return (
@@ -71,14 +108,19 @@ export default function Clock({ todos }: ClockProps) {
                 height={size}
                 viewBox={`0 0 ${size} ${size}`}
             >
-                <circle className="clock-face" cx={cx} cy={cy} r={radius} />
+                <circle className="clock-face" cx={cx} cy={cy} r={radius} fill={fillColor} stroke={outlineColor} />
                 {todos.map((todo, idx) => {
                     const s = getShadings(todo);
-                    return <path key={idx} className="clock-shade" d={arcPath(s, radius)} />
+                    return (
+                        <g key={idx}>
+                            <path className="clock-shade" d={arcPath(s)} fill={shadeColor} stroke="none" />
+                            {arcLabel(s, todo.text)}
+                        </g>
+                    );
                 })}
-                <circle className="clock-center" cx={cx} cy={cy} r={3} />
-                <line className="hand hour-hand" x1={cx} y1={cy} x2={hx} y2={hy} />
-                <line className="hand minute-hand" x1={cx} y1={cy} x2={mx} y2={my} />
+                <circle className="clock-center" cx={cx} cy={cy} r={gap} fill={outlineColor} />
+                <line className="hand hour-hand" x1={cx} y1={cy} x2={hx} y2={hy} stroke={outlineColor} />
+                <line className="hand minute-hand" x1={cx} y1={cy} x2={mx} y2={my} stroke={outlineColor} />
             </svg>
         </div>
     );
