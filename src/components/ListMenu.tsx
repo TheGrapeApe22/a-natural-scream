@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu, MenuItem, IconButton, Tooltip } from "@mui/material";
+import './list-menu.css';
 
 type ListMenuProps = {
 	isDefault: boolean;
@@ -40,10 +41,6 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 		<div className={className}>
 			<Tooltip title="More options">
 				<IconButton
-					aria-label="More options"
-					aria-controls={open ? "list-menu" : undefined}
-					aria-expanded={open ? "true" : undefined}
-					aria-haspopup="menu"
 					onClick={handleOpen}
 					size="small"
 				>
@@ -52,15 +49,14 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 				</IconButton>
 			</Tooltip>
 			<Menu
-				id="list-menu"
 				anchorEl={anchorEl}
 				open={open}
 				onClose={handleClose}
 				anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
 				transformOrigin={{ vertical: "top", horizontal: "right" }}
 			>
-				<MenuItem disabled={isDefault} onClick={handleRename}>Rename list</MenuItem>
-				<MenuItem disabled={isDefault} onClick={handleDelete}>Delete list</MenuItem>
+				<MenuItem className="menu-item" disabled={isDefault} onClick={handleRename}>Rename list</MenuItem>
+				<MenuItem className="menu-item" disabled={isDefault} onClick={handleDelete}>Delete list</MenuItem>
 			</Menu>
 		</div>
 	);

@@ -1,8 +1,6 @@
 import "./todo.css";
 import TodoItem, { Todo } from "./TodoItem";
 import PlusIcon from "../assets/plus-icon.png";
-import { ThemeProvider } from "@mui/material/styles";
-import { appTheme } from "./theme";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
@@ -17,7 +15,6 @@ type TodoPageProps = {
 
 export default function TodoPage({ todos, onChange, onDelete, onAdd, focusId, minimize }: TodoPageProps) {
     return (
-        <ThemeProvider theme={appTheme}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="todo-page">
             <div className="todo-list">
@@ -32,6 +29,5 @@ export default function TodoPage({ todos, onChange, onDelete, onAdd, focusId, mi
             </div>
         </div>
         </LocalizationProvider>
-        </ThemeProvider>
     );
 }

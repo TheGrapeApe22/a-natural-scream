@@ -86,3 +86,13 @@ body {
 	margin-bottom: 16px;
 	color: var(--text-color);
 }
+
+.lists-header {
+  display: flex;
+  align-items: center;
+  
+  justify-content: center;
+}
+.lists {
+  margin-right: 16px;
+}

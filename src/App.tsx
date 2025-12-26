@@ -11,6 +11,8 @@ import type { Todo } from './components/TodoItem';
 import { getDefaultTodoLists, loadTodoLists, saveTodoLists, TODO_STORAGE_VERSION } from './storage/todoStorage';
 import getNewTodoList from './utils/newTodoList';
 import ListMenu from './components/ListMenu';
+import { appTheme } from './components/theme';
+import { ThemeProvider } from '@mui/material';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -84,48 +86,51 @@ function App() {
   }, [selectedList, listsData]);
 
   return (
-    <div className="App app-shell">
+    <div className="App app-shell"><ThemeProvider theme={appTheme}>
       <main className="content">
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
           <div className="title">Todo</div>
-          <Lists
-            lists={listNames}
-            selected={selectedList}
-            onSelectList={(name) => setSelectedList(name)}
-            onCreateList={(name) => {
-              setListsData((prev) => ({ ...prev, [name]: getNewTodoList() }));
-            }}
-          />
-          <ListMenu
-            isDefault={selectedList === 'Todo' || selectedList === 'Cluster' || selectedList === 'Plan Amaj7' || selectedList === 'Plan B'}
-            currentName={selectedList}
-            onRename={(newName) => {
-              setListsData((prev) => {
-                const trimmed = newName.trim();
-                if (!trimmed || trimmed === selectedList) return prev;
-                if (prev[trimmed]) {
-                  window.alert('A list with that name already exists.');
-                  return prev;
-                }
-                const entries = Object.entries(prev);
-                const next = entries.reduce((acc, [k, v]) => {
-                  const key = k === selectedList ? trimmed : k;
-                  acc[key] = v;
-                  return acc;
-                }, {} as typeof prev);
-                // Move selection to the renamed list (order preserved)
-                setSelectedList(trimmed);
-                return next;
-              });
-            }}
-            onDelete={() => {
-              setListsData((prev) => {
-                const { [selectedList]: _removed, ...rest } = prev;
-                setSelectedList('Todo');
-                return rest;
-              });
-            }}
-          />
+          <div className="lists-header">
+            <Lists
+              lists={listNames}
+              selected={selectedList}
+              onSelectList={(name) => setSelectedList(name)}
+              onCreateList={(name) => {
+                setListsData((prev) => ({ ...prev, [name]: getNewTodoList() }));
+              }}
+              className="lists"
+            />
+            <ListMenu
+              isDefault={selectedList === 'Todo' || selectedList === 'Cluster' || selectedList === 'Plan Amaj7' || selectedList === 'Plan B'}
+              currentName={selectedList}
+              onRename={(newName) => {
+                setListsData((prev) => {
+                  const trimmed = newName.trim();
+                  if (!trimmed || trimmed === selectedList) return prev;
+                  if (prev[trimmed]) {
+                    window.alert('A list with that name already exists.');
+                    return prev;
+                  }
+                  const entries = Object.entries(prev);
+                  const next = entries.reduce((acc, [k, v]) => {
+                    const key = k === selectedList ? trimmed : k;
+                    acc[key] = v;
+                    return acc;
+                  }, {} as typeof prev);
+                  // Move selection to the renamed list (order preserved)
+                  setSelectedList(trimmed);
+                  return next;
+                });
+              }}
+              onDelete={() => {
+                setListsData((prev) => {
+                  const { [selectedList]: _removed, ...rest } = prev;
+                  setSelectedList('Todo');
+                  return rest;
+                });
+              }}
+            />
+          </div>
           <TodoPage
             todos={(listsData[selectedList] ?? getNewTodoList()).todos}
             onAdd={() => addTodoTo(selectedList)}
@@ -189,7 +194,7 @@ function App() {
           <img src={TabIcon4} alt="planb tab icon" className="tab-icon" />
         </button>
       </nav>
-    </div>
+    </ThemeProvider></div>
   );
 }
 

@@ -6,7 +6,7 @@ export const appTheme = createTheme({
     mode: "dark",
   },
   typography: {
-    fontFamily: 'monospace',
+    fontFamily: 'cause, sans-serif',
   },
   components: {
     MuiTimeField: {
