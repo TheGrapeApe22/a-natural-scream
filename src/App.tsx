@@ -14,6 +14,7 @@ import ListMenu from './components/ListMenu';
 import { appTheme } from './components/theme';
 import { ThemeProvider } from '@mui/material';
 import StartupPage from './components/StartupPage';
+import bg from './assets/star-filled.png';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -104,7 +105,15 @@ function App() {
           <StartupPage onContinue={() => startupState === 'visible' && setStartupState('exiting')} />
         </div>
       )}
-      <main className="content">
+      <main className="content"
+        // style={{
+        //   minHeight: '100vh',
+        //   backgroundImage: `url(${bg})`,
+        //   backgroundRepeat: 'repeat',
+        //   backgroundSize: '100px 100px',
+        //   backgroundAttachment: 'fixed'
+        // }}
+      >
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
           <button
             className="startup-link"
