@@ -10,6 +10,7 @@ import Lists from './components/Lists';
 import type { Todo } from './components/TodoItem';
 import { getDefaultTodoLists, loadTodoLists, saveTodoLists, TODO_STORAGE_VERSION } from './storage/todoStorage';
 import getNewTodoList from './utils/newTodoList';
+import ListMenu from './components/ListMenu';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -93,6 +94,36 @@ function App() {
             onSelectList={(name) => setSelectedList(name)}
             onCreateList={(name) => {
               setListsData((prev) => ({ ...prev, [name]: getNewTodoList() }));
+            }}
+          />
+          <ListMenu
+            isDefault={selectedList === 'Todo' || selectedList === 'Cluster' || selectedList === 'Plan Amaj7' || selectedList === 'Plan B'}
+            currentName={selectedList}
+            onRename={(newName) => {
+              setListsData((prev) => {
+                const trimmed = newName.trim();
+                if (!trimmed || trimmed === selectedList) return prev;
+                if (prev[trimmed]) {
+                  window.alert('A list with that name already exists.');
+                  return prev;
+                }
+                const entries = Object.entries(prev);
+                const next = entries.reduce((acc, [k, v]) => {
+                  const key = k === selectedList ? trimmed : k;
+                  acc[key] = v;
+                  return acc;
+                }, {} as typeof prev);
+                // Move selection to the renamed list (order preserved)
+                setSelectedList(trimmed);
+                return next;
+              });
+            }}
+            onDelete={() => {
+              setListsData((prev) => {
+                const { [selectedList]: _removed, ...rest } = prev;
+                setSelectedList('Todo');
+                return rest;
+              });
             }}
           />
           <TodoPage
