@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { timeStringToDate } from '../utils/dates';
 import './clock.css';
 import { Todo } from './TodoItem';
@@ -23,8 +24,29 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
     const gap = 0;
     const size = 400;
 
+    // track current time and update at minute boundaries
+    const [now, setNow] = useState(new Date());
+    useEffect(() => {
+        let timeoutId: number | null = null;
+
+        const scheduleNextTick = () => {
+            const delay = 60000 - (Date.now() % 60000);
+            timeoutId = window.setTimeout(() => {
+                setNow(new Date());
+                scheduleNextTick();
+            }, delay);
+        };
+
+        scheduleNextTick();
+
+        return () => {
+            if (timeoutId !== null) {
+                window.clearTimeout(timeoutId);
+            }
+        };
+    }, []);
+
     // times
-    const now = new Date();
     const hour = now.getHours() % 12;
     const minute = now.getMinutes();
     // constants dependent on size

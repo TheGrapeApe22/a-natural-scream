@@ -9,7 +9,7 @@ import TabIcon4 from './assets/plan-b-icon.png';
 import Lists from './components/Lists';
 import type { Todo } from './components/TodoItem';
 import { getDefaultTodoLists, loadTodoLists, saveTodoLists, TODO_STORAGE_VERSION } from './storage/todoStorage';
-import defaultTodoList from './utils/defaultTodoList';
+import getNewTodoList from './utils/newTodoList';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -37,7 +37,7 @@ function App() {
 
   const updateTodoIn = (listName: string, next: Todo) => {
     setListsData((prev) => {
-      const bucket = prev[listName] ?? defaultTodoList;
+      const bucket = prev[listName] ?? getNewTodoList();
       return {
         ...prev,
         [listName]: {
@@ -50,7 +50,7 @@ function App() {
 
   const deleteTodoFrom = (listName: string, id: number) => {
     setListsData((prev) => {
-      const bucket = prev[listName] ?? defaultTodoList;
+      const bucket = prev[listName] ?? getNewTodoList();
       return {
         ...prev,
         [listName]: {
@@ -64,7 +64,7 @@ function App() {
   // Import todos from one list into another (replace target contents)
   const importTodosFrom = (sourceName: string, targetName: string) => {
     setListsData((prev) => {
-      const source = prev[sourceName] ?? defaultTodoList;
+      const source = prev[sourceName] ?? getNewTodoList();
       const copiedTodos = source.todos.map((t) => ({ ...t }));
       return {
         ...prev,
@@ -92,11 +92,11 @@ function App() {
             selected={selectedList}
             onSelectList={(name) => setSelectedList(name)}
             onCreateList={(name) => {
-              setListsData((prev) => ({ ...prev, [name]: defaultTodoList }));
+              setListsData((prev) => ({ ...prev, [name]: getNewTodoList() }));
             }}
           />
           <TodoPage
-            todos={(listsData[selectedList] ?? defaultTodoList).todos}
+            todos={(listsData[selectedList] ?? getNewTodoList()).todos}
             onAdd={() => addTodoTo(selectedList)}
             onChange={(next) => updateTodoIn(selectedList, next)}
             onDelete={(id) => deleteTodoFrom(selectedList, id)}

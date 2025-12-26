@@ -1,5 +1,5 @@
 import type { Todo } from "../components/TodoItem";
-import defaultTodoList from "../utils/defaultTodoList";
+import getNewTodoList from "../utils/newTodoList";
 
 // Storage key used in localStorage for all todo lists.
 export const TODO_STORAGE_KEY = "time-app.todoLists" as const;
@@ -25,10 +25,10 @@ export function getDefaultTodoLists(): TodoListsState {
         version: TODO_STORAGE_VERSION,
         selectedList: "Todo",
         lists: {
-            "Todo": defaultTodoList,
-            "Cluster": defaultTodoList,
-            "Plan Amaj7": defaultTodoList,
-            "Plan B": defaultTodoList,
+            "Todo": getNewTodoList(),
+            "Cluster": getNewTodoList(),
+            "Plan Amaj7": getNewTodoList(),
+            "Plan B": getNewTodoList(),
         },
     };
 }
