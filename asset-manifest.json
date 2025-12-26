@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/time-app/static/css/main.ac4df9d4.css",
-    "main.js": "/time-app/static/js/main.a5f61a8c.js",
-    "static/media/x-icon.png": "/time-app/static/media/x-icon.f07651c9113858f305ad.png",
-    "static/media/star-empty.png": "/time-app/static/media/star-empty.4d8d37f3f66f019a19c2.png",
-    "static/media/star-filled.png": "/time-app/static/media/star-filled.59e9f0fa6299d6de320e.png",
-    "static/media/cluster-icon.png": "/time-app/static/media/cluster-icon.de4cf8474019d145b71e.png",
-    "static/media/plan-b-icon.png": "/time-app/static/media/plan-b-icon.fb4b64261f328dcf6769.png",
-    "static/media/amaj7-icon.png": "/time-app/static/media/amaj7-icon.6bcd956125dd3b7b4c32.png",
-    "index.html": "/time-app/index.html",
-    "main.ac4df9d4.css.map": "/time-app/static/css/main.ac4df9d4.css.map",
-    "main.a5f61a8c.js.map": "/time-app/static/js/main.a5f61a8c.js.map"
+    "main.css": "/a-natural-scream/static/css/main.8cfb0341.css",
+    "main.js": "/a-natural-scream/static/js/main.55fbc1f9.js",
+    "static/media/x-icon.png": "/a-natural-scream/static/media/x-icon.f07651c9113858f305ad.png",
+    "static/media/star-empty.png": "/a-natural-scream/static/media/star-empty.4d8d37f3f66f019a19c2.png",
+    "static/media/star-filled.png": "/a-natural-scream/static/media/star-filled.59e9f0fa6299d6de320e.png",
+    "static/media/cluster-icon.png": "/a-natural-scream/static/media/cluster-icon.de4cf8474019d145b71e.png",
+    "static/media/plan-b-icon.png": "/a-natural-scream/static/media/plan-b-icon.fb4b64261f328dcf6769.png",
+    "static/media/amaj7-icon.png": "/a-natural-scream/static/media/amaj7-icon.6bcd956125dd3b7b4c32.png",
+    "index.html": "/a-natural-scream/index.html",
+    "main.8cfb0341.css.map": "/a-natural-scream/static/css/main.8cfb0341.css.map",
+    "main.55fbc1f9.js.map": "/a-natural-scream/static/js/main.55fbc1f9.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac4df9d4.css",
-    "static/js/main.a5f61a8c.js"
+    "static/css/main.8cfb0341.css",
+    "static/js/main.55fbc1f9.js"
   ]
 }
