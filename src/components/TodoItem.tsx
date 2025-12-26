@@ -2,8 +2,10 @@ import StarFilled from "../assets/star-filled.png";
 import StarEmpty from "../assets/star-empty.png";
 import XIcon from "../assets/x-icon.png";
 import { MobileTimePicker } from "@mui/x-date-pickers";
+import { Popover } from "@mui/material";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { colors } from "../utils/colors";
-import { dateToTimeString, timeStringToDate } from "../utils/dates";
+import { dateToTimeString, timeStringToDate, formatTimeAMPM } from "../utils/dates";
 import { useState } from "react";
 import ColorPicker from "./ColorPicker";
 
@@ -32,6 +34,9 @@ function textAreaAdjust(element : HTMLTextAreaElement) {
 export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize }: TodoItemProps) {
 	const [colorAnchor, setColorAnchor] = useState<HTMLElement | null>(null);
 	const colorOpen = Boolean(colorAnchor);
+	const [timeAnchor, setTimeAnchor] = useState<HTMLElement | null>(null);
+	const timeOpen = Boolean(timeAnchor);
+
 	return (
 		<div className="todo-item">
 			<button
@@ -65,22 +70,41 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				onChange={(e) => {onChange({ ...todo, text: e.target.value }); textAreaAdjust(e.currentTarget);}}
 				autoFocus={autoFocus}
 			/>
-			{!minimize && (<>
-				<MobileTimePicker
-					label="Start"
-					value={timeStringToDate(todo.startTime)}
-					onChange={(value) =>
-						onChange({ ...todo, startTime: dateToTimeString(value) })
-					}
-				/>
-				<MobileTimePicker
-					label="End"
-					value={timeStringToDate(todo.endTime)}
-					onChange={(value) =>
-						onChange({ ...todo, endTime: dateToTimeString(value) })
-					}
-				/>
-			</>)}
+			{!minimize && <div className="time-section">
+				<span className="time-text">
+					{formatTimeAMPM(todo.startTime)} – {formatTimeAMPM(todo.endTime)}
+				</span>
+				<button
+					className="icon-button"
+					onClick={(e) => setTimeAnchor(e.currentTarget)}
+				>
+					<AccessTimeIcon fontSize="small" className="clock-icon" />
+				</button>
+				<Popover
+					open={timeOpen}
+					anchorEl={timeAnchor}
+					onClose={() => setTimeAnchor(null)}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+					transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+				>
+					<div style={{ display: 'flex', gap: 12, padding: 12 }}>
+						<MobileTimePicker
+							label="Start"
+							value={timeStringToDate(todo.startTime)}
+							onChange={(value) =>
+								onChange({ ...todo, startTime: dateToTimeString(value) })
+							}
+						/>
+						<MobileTimePicker
+							label="End"
+							value={timeStringToDate(todo.endTime)}
+							onChange={(value) =>
+								onChange({ ...todo, endTime: dateToTimeString(value) })
+							}
+						/>
+					</div>
+				</Popover>
+			</div>}
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
 				<img src={XIcon} alt="✕" width="36px" />
 			</button>

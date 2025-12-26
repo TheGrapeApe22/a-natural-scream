@@ -7,7 +7,7 @@ export const colors: string[] = Array.from({ length: 16 }, (_, i) => {
 });
 
 export function getTranslucent(color : string): string {
-    return `${color.slice(0,7)}e6`;
+    return `${color.slice(0,7)}b3`; // 70%
 }
 
 // source: https://codepen.io/sosuke/pen/Pjoqqp

@@ -94,3 +94,17 @@
 .color-swatch.selected {
 	outline: 2px solid var(--text-color);
 }
+
+.time-section {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 12px;
+	color: var(--text-color);
+}
+
+.clock-icon.MuiSvgIcon-root {
+	margin-left: 8px;
+	margin-right: 2px;
+	align-self: center;
+}

@@ -13,3 +13,13 @@ export function dateToTimeString(d: Date | null): string | null {
     const mm = d.getMinutes().toString().padStart(2, "0");
     return `${hh}:${mm}`;
 }
+
+export function formatTimeAMPM(time: string | null): string {
+    const d = timeStringToDate(time);
+    if (!d) return "--:-- --";
+    return d.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+    });
+}

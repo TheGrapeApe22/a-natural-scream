@@ -82,7 +82,7 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
     const arcPath = ({start: a1, end: a2} : Shading) => {
         const start = normalize(a1);
         const end = normalize(a2);
-
+        
         const sweepRaw = end - start;
         const sweep = sweepRaw <= 0 ? sweepRaw + TAU : sweepRaw;
         const largeArc = sweep > Math.PI ? 1 : 0;
@@ -136,7 +136,12 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
                     const s = getShadings(todo);
                     return s && (<g key={idx}>
                         <path d={arcPath(s)} fill={getTranslucent(colors[todo.colorIndex])} stroke="none" />
-                        {(s.end - s.start >= TAU) && <circle cx={cx} cy={cy} r={radius - gap} fill={getTranslucent(colors[todo.colorIndex])} stroke="none" />}
+                        {(s.end - s.start >= TAU) && <circle cx={cx} cy={cy} r={radius - gap} stroke="none" fill={getTranslucent(colors[todo.colorIndex])} />}
+                    </g>);
+                })}
+                {todos.map((todo, idx) => {
+                    const s = getShadings(todo);
+                    return s && (<g key={idx}>
                         {arcLabel(s, todo.text)}
                     </g>);
                 })}
