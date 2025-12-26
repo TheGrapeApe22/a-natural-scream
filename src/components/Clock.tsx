@@ -72,8 +72,8 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
         if (!startDate || !endDate)
             return null;
         return {
-            start: startDate.getHours() % 12 * (Math.PI / 6) + (Math.PI / 360) * startDate.getMinutes(),
-            end: endDate.getHours() % 12 * (Math.PI / 6) + (Math.PI / 360) * endDate.getMinutes()
+            start: startDate.getHours() * (Math.PI / 6) + (Math.PI / 360) * startDate.getMinutes(),
+            end: endDate.getHours() * (Math.PI / 6) + (Math.PI / 360) * endDate.getMinutes()
         };
     }
 
@@ -82,7 +82,7 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
     const arcPath = ({start: a1, end: a2} : Shading) => {
         const start = normalize(a1);
         const end = normalize(a2);
-        
+
         const sweepRaw = end - start;
         const sweep = sweepRaw <= 0 ? sweepRaw + TAU : sweepRaw;
         const largeArc = sweep > Math.PI ? 1 : 0;
@@ -136,6 +136,7 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
                     const s = getShadings(todo);
                     return s && (<g key={idx}>
                         <path d={arcPath(s)} fill={getTranslucent(colors[todo.colorIndex])} stroke="none" />
+                        {(s.end - s.start >= TAU) && <circle cx={cx} cy={cy} r={radius - gap} fill={getTranslucent(colors[todo.colorIndex])} stroke="none" />}
                         {arcLabel(s, todo.text)}
                     </g>);
                 })}

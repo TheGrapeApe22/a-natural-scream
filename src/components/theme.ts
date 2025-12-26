@@ -16,7 +16,7 @@ export const appTheme = createTheme({
             size: "small",
             variant: "outlined",
             sx: {
-              width: "8ch",
+              width: "16ch",
               '& .MuiInputBase-input': {
                 padding: '0px 0px',
               },

@@ -1,7 +1,7 @@
 import StarFilled from "../assets/star-filled.png";
 import StarEmpty from "../assets/star-empty.png";
 import XIcon from "../assets/x-icon.png";
-import { TimeField } from "@mui/x-date-pickers";
+import { MobileTimePicker } from "@mui/x-date-pickers";
 import { colors } from "../utils/colors";
 import { dateToTimeString, timeStringToDate } from "../utils/dates";
 import { useState } from "react";
@@ -66,19 +66,15 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				autoFocus={autoFocus}
 			/>
 			{!minimize && (<>
-				<TimeField
+				<MobileTimePicker
 					label="Start"
-					ampm={false}
-					format="HH:mm"
 					value={timeStringToDate(todo.startTime)}
 					onChange={(value) =>
 						onChange({ ...todo, startTime: dateToTimeString(value) })
 					}
 				/>
-				<TimeField
+				<MobileTimePicker
 					label="End"
-					ampm={false}
-					format="HH:mm"
 					value={timeStringToDate(todo.endTime)}
 					onChange={(value) =>
 						onChange({ ...todo, endTime: dateToTimeString(value) })

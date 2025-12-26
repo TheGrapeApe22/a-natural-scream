@@ -1,6 +1,5 @@
 import React from "react";
 import { Menu, MenuItem, IconButton, Tooltip } from "@mui/material";
-import './list-menu.css';
 
 type ListMenuProps = {
 	isDefault: boolean;
@@ -61,4 +60,3 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 		</div>
 	);
 }
-
