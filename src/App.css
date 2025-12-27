@@ -135,5 +135,13 @@ body {
   background-repeat: repeat;
   background-size: 200px 200px;
   background-attachment: fixed;
+  background-position: 0 0;
+  animation: bg-pan 800s linear infinite;
+  will-change: background-position;
   /* filter: opacity(50%); */
+}
+
+@keyframes bg-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: -1500px 1500px; }
 }
