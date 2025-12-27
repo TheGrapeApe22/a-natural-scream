@@ -27,7 +27,7 @@ function App() {
   const [listsData, setListsData] = useState<Record<string, { todos: Todo[]; nextId: number }>>(initial.lists);
   const [focusTodoId, setFocusTodoId] = useState<number | null>(null);
   const [startupState, setStartupState] = useState<'visible' | 'entering' | 'exiting' | 'hidden'>('visible');
-  const [isThemeDark, setIsThemeDark] = useState<boolean>(false);
+  const [isThemeDark, setIsThemeDark] = useState<boolean>(true);
 
   useEffect(() => {
       document.documentElement.style.setProperty('--background-color', isThemeDark ? '#444444' : '#f0f0f0');

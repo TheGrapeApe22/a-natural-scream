@@ -38,7 +38,7 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 
 	return (
 		<div className={className}>
-			<Tooltip title="More options">
+			<Tooltip style={{ color: 'var(--text-color)' }} title="List options">
 				<IconButton
 					onClick={handleOpen}
 					size="small"

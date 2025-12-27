@@ -145,6 +145,28 @@ export default function Clock({ todos, outlineColor, shadeColor, fillColor }: Cl
                         {arcLabel(s, todo.text)}
                     </g>);
                 })}
+                {Array.from({ length: 12 }, (_, i) => {
+                    const a = (Math.PI / 6) * i; // 12 ticks
+                    const tickLen = (i % 3 === 0) ? radius * 0.09 : radius * 0.05;
+
+                    const x1 = cx + radius * Math.sin(a);
+                    const y1 = cy - radius * Math.cos(a);
+                    const x2 = cx + (radius - tickLen) * Math.sin(a);
+                    const y2 = cy - (radius - tickLen) * Math.cos(a);
+
+                    return (
+                        <line
+                            key={`tick-${i}`}
+                            x1={x1}
+                            y1={y1}
+                            x2={x2}
+                            y2={y2}
+                            stroke={outlineColor}
+                            strokeWidth={2}
+                            strokeLinecap='round'
+                        />
+                    );
+                })}
                 <line x1={cx} y1={cy} x2={hx} y2={hy} stroke={outlineColor} strokeWidth={4} strokeLinecap='round'/>
                 <line x1={cx} y1={cy} x2={mx} y2={my} stroke={outlineColor} strokeWidth={3} strokeLinecap='round' />
                 <circle cx={cx} cy={cy} r={3} fill={outlineColor} />

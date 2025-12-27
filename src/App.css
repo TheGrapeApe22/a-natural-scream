@@ -89,7 +89,7 @@ body {
 .startup-overlay {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: #d8d0db;
   z-index: 9999;
   transition: transform 600ms ease-in-out;
   will-change: transform;
