@@ -14,7 +14,7 @@ import ListMenu from './components/ListMenu';
 import { appTheme } from './components/theme';
 import { ThemeProvider } from '@mui/material';
 import StartupPage from './components/StartupPage';
-import bg from './assets/star-filled.png';
+import bg from './assets/bg.png';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
@@ -33,7 +33,6 @@ function App() {
       document.documentElement.style.setProperty('--background-color', isThemeDark ? '#444444' : '#f0f0f0');
       document.documentElement.style.setProperty('--text-color', isThemeDark ? '#c8c8c8' : 'black');
       document.documentElement.style.setProperty('--darker-background-color', isThemeDark ? '#404040' : '#eaeaeaff');
-      // appTheme.palette.mode = isThemeDark ? 'dark' : 'light'; // doesn't work dynamically
   }, [isThemeDark]);
 
   const listNames = useMemo(() => Object.keys(listsData), [listsData]);
@@ -115,15 +114,7 @@ function App() {
           <StartupPage onContinue={() => startupState === 'visible' && setStartupState('exiting')} />
         </div>
       )}
-      <main className="content"
-        // style={{
-        //   minHeight: '100vh',
-        //   backgroundImage: `url(${bg})`,
-        //   backgroundRepeat: 'repeat',
-        //   backgroundSize: '100px 100px',
-        //   backgroundAttachment: 'fixed'
-        // }}
-      >
+      <main className="content background" style={{ backgroundImage: `url(${bg})` }}>
         <button className="theme-button" onClick={() => setIsThemeDark(!isThemeDark)}>
           {isThemeDark ? <DarkModeIcon /> : <LightModeIcon />}
         </button>

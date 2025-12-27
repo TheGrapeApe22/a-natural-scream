@@ -54,7 +54,7 @@ body {
   border: none;
   background: transparent;
   color: var(--text-color); /* gray-400 */
-  padding: 20px 12px; /* slightly higher */
+  padding: 20px 0px; /* slightly higher */
   font-size: 16px;    /* bigger text */
   cursor: pointer;
   white-space: nowrap; /* keep labels on one line */
@@ -128,4 +128,12 @@ body {
   color: var(--text-color);
   font-size: 16px;
   background-color: var(--darker-background-color);
+}
+
+.background {
+  min-height: 200vh;
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  background-attachment: fixed;
+  /* filter: opacity(50%); */
 }
