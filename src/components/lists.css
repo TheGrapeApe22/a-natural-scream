@@ -24,3 +24,8 @@
 	color: var(--text-color);
 }
 
+.three-dots {
+	font-size: 20px;
+	line-height: 1;
+	color: var(--text-color);
+}

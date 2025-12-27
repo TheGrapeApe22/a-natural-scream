@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu, MenuItem, IconButton, Tooltip } from "@mui/material";
+import './lists.css'
 
 type ListMenuProps = {
 	isDefault: boolean;
@@ -38,13 +39,12 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 
 	return (
 		<div className={className}>
-			<Tooltip style={{ color: 'var(--text-color)' }} title="List options">
+			<Tooltip title="List options">
 				<IconButton
 					onClick={handleOpen}
 					size="small"
 				>
-					{/* Using a simple glyph to avoid extra icon deps */}
-					<span style={{ fontSize: 20, lineHeight: 1 }}>⋮</span>
+					<span className="three-dots">⋮</span>
 				</IconButton>
 			</Tooltip>
 			<Menu

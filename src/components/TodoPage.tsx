@@ -1,6 +1,6 @@
 import "./todo.css";
 import TodoItem, { Todo } from "./TodoItem";
-import PlusIcon from "../assets/plus-icon.png";
+import PlusIcon from "../assets/ui/plus-icon.png";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 

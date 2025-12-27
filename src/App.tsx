@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import ClockPage from './components/ClockPage';
 import './App.css';
 import TodoPage from './components/TodoPage';
-import TabIcon1 from './assets/todo-icon.jpg';
-import TabIcon2 from './assets/cluster-icon.png';
-import TabIcon3 from './assets/amaj7-icon.png';
-import TabIcon4 from './assets/plan-b-icon.png';
+import TabIcon1 from './assets/tab-icons/todo-icon.jpg';
+import TabIcon2 from './assets/tab-icons/cluster-icon.png';
+import TabIcon3 from './assets/tab-icons/amaj7-icon.png';
+import TabIcon4 from './assets/tab-icons/plan-b-icon.png';
 import Lists from './components/Lists';
 import type { Todo } from './components/TodoItem';
 import { getDefaultTodoLists, loadTodoLists, saveTodoLists, TODO_STORAGE_VERSION } from './storage/todoStorage';
@@ -126,7 +126,7 @@ function App() {
           A Natural Scream
         </button>
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
-          <div className="title">Todo</div>
+          <div className="title">Brain Dump</div>
           <div className="lists-header">
             <Lists
               lists={listNames}

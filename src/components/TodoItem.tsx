@@ -1,6 +1,6 @@
-import StarFilled from "../assets/star-filled.png";
-import StarEmpty from "../assets/star-empty.png";
-import XIcon from "../assets/x-icon.png";
+import StarFilled from "../assets/ui/star-filled.png";
+import StarEmpty from "../assets/ui/star-empty.png";
+import XIcon from "../assets/ui/x-icon.png";
 import { MobileTimePicker } from "@mui/x-date-pickers";
 import { Popover } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";

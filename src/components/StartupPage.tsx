@@ -1,6 +1,6 @@
-import scream from '../assets/scream.svg';
-import pua from '../assets/pua.png';
-import magnolia from '../assets/magnolia.png';
+import scream from '../assets/startup-page/scream.svg';
+import pua from '../assets/startup-page/pua.png';
+import magnolia from '../assets/startup-page/magnolia.png';
 import './startup-page.css'
 
 export default function StartupPage({onContinue}: {onContinue: () => void}) {
