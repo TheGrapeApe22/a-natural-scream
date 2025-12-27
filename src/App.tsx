@@ -159,6 +159,26 @@ function App() {
                   return next;
                 });
               }}
+              onDuplicate={(copyName) => {
+                console.log('duplicating', copyName);
+                setListsData((prev) => {
+                  console.log('setting', copyName);
+                  if (prev[copyName]) {
+                    window.alert('A list with that name already exists.');
+                    return prev;
+                  }
+                  const source = prev[selectedList] ?? getNewTodoList();
+                  const copiedTodos = source.todos.map((t) => ({ ...t }));
+                  const next = {
+                    ...prev,
+                    [copyName]: { todos: copiedTodos, nextId: source.nextId },
+                  };
+                  // Select the new duplicated list
+                  setSelectedList(copyName);
+                  return next;
+                });
+                console.log('done duplicating');
+              }}
               onDelete={() => {
                 setListsData((prev) => {
                   const { [selectedList]: _removed, ...rest } = prev;

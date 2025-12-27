@@ -6,11 +6,12 @@ type ListMenuProps = {
 	isDefault: boolean;
 	currentName: string;
 	onRename: (nextName: string) => void;
+	onDuplicate: (copyName: string) => void;
 	onDelete: () => void;
 	className?: string;
 };
 
-export default function ListMenu({ isDefault, currentName, onRename, onDelete, className }: ListMenuProps) {
+export default function ListMenu({ isDefault, currentName, onRename, onDuplicate, onDelete, className }: ListMenuProps) {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
@@ -37,6 +38,15 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 		if (ok) onDelete();
 	};
 
+	const handleDuplicate = () => {
+		handleClose();
+		const next = window.prompt("Name for duplicate", `${currentName} (copy)`);
+		const trimmed = next?.trim();
+		if (trimmed) {
+			onDuplicate(trimmed);
+		}
+	};
+
 	return (
 		<div className={className}>
 			<Tooltip title="List options">
@@ -55,6 +65,7 @@ export default function ListMenu({ isDefault, currentName, onRename, onDelete, c
 				transformOrigin={{ vertical: "top", horizontal: "right" }}
 			>
 				<MenuItem className="menu-item" disabled={isDefault} onClick={handleRename}>Rename list</MenuItem>
+				<MenuItem className="menu-item" disabled={false} onClick={handleDuplicate}>Duplicate list</MenuItem>
 				<MenuItem className="menu-item" disabled={isDefault} onClick={handleDelete}>Delete list</MenuItem>
 			</Menu>
 		</div>
