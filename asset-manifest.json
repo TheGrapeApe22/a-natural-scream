@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/a-natural-scream/static/css/main.01ca22ab.css",
-    "main.js": "/a-natural-scream/static/js/main.85d99867.js",
+    "main.css": "/a-natural-scream/static/css/main.e280de41.css",
+    "main.js": "/a-natural-scream/static/js/main.735dda3b.js",
     "static/media/pua.png": "/a-natural-scream/static/media/pua.5f9e75f84ff805bf7eed.png",
     "static/media/x-icon.png": "/a-natural-scream/static/media/x-icon.f07651c9113858f305ad.png",
     "static/media/star-empty.png": "/a-natural-scream/static/media/star-empty.4d8d37f3f66f019a19c2.png",
@@ -11,11 +11,11 @@
     "static/media/plan-b-icon.png": "/a-natural-scream/static/media/plan-b-icon.fb4b64261f328dcf6769.png",
     "static/media/amaj7-icon.png": "/a-natural-scream/static/media/amaj7-icon.6bcd956125dd3b7b4c32.png",
     "index.html": "/a-natural-scream/index.html",
-    "main.01ca22ab.css.map": "/a-natural-scream/static/css/main.01ca22ab.css.map",
-    "main.85d99867.js.map": "/a-natural-scream/static/js/main.85d99867.js.map"
+    "main.e280de41.css.map": "/a-natural-scream/static/css/main.e280de41.css.map",
+    "main.735dda3b.js.map": "/a-natural-scream/static/js/main.735dda3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.01ca22ab.css",
-    "static/js/main.85d99867.js"
+    "static/css/main.e280de41.css",
+    "static/js/main.735dda3b.js"
   ]
 }
