@@ -15,6 +15,8 @@ import { appTheme } from './components/theme';
 import { ThemeProvider } from '@mui/material';
 import StartupPage from './components/StartupPage';
 import bg from './assets/star-filled.png';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 type TabKey = 'todo' | 'cluster' | 'amaj7' | 'planb';
 
@@ -25,6 +27,14 @@ function App() {
   const [listsData, setListsData] = useState<Record<string, { todos: Todo[]; nextId: number }>>(initial.lists);
   const [focusTodoId, setFocusTodoId] = useState<number | null>(null);
   const [startupState, setStartupState] = useState<'visible' | 'entering' | 'exiting' | 'hidden'>('visible');
+  const [isThemeDark, setIsThemeDark] = useState<boolean>(false);
+
+  useEffect(() => {
+      document.documentElement.style.setProperty('--background-color', isThemeDark ? '#444444' : '#f0f0f0');
+      document.documentElement.style.setProperty('--text-color', isThemeDark ? '#c8c8c8' : 'black');
+      document.documentElement.style.setProperty('--darker-background-color', isThemeDark ? '#404040' : '#eaeaeaff');
+      // appTheme.palette.mode = isThemeDark ? 'dark' : 'light'; // doesn't work dynamically
+  }, [isThemeDark]);
 
   const listNames = useMemo(() => Object.keys(listsData), [listsData]);
 
@@ -114,13 +124,16 @@ function App() {
         //   backgroundAttachment: 'fixed'
         // }}
       >
+        <button className="theme-button" onClick={() => setIsThemeDark(!isThemeDark)}>
+          {isThemeDark ? <DarkModeIcon /> : <LightModeIcon />}
+        </button>
+        <button
+          className="startup-link"
+          onClick={() => startupState === 'hidden' && setStartupState('entering')}
+        >
+          A Natural Scream
+        </button>
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
-          <button
-            className="startup-link"
-            onClick={() => startupState === 'hidden' && setStartupState('entering')}
-          >
-            A Natural Scream
-          </button>
           <div className="title">Todo</div>
           <div className="lists-header">
             <Lists

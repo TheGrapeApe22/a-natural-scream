@@ -3,7 +3,7 @@ import type {} from "@mui/x-date-pickers/themeAugmentation";
 
 export const appTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
   typography: {
     fontFamily: 'cause, sans-serif',

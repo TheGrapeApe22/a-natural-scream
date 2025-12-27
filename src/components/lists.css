@@ -19,9 +19,8 @@
 	box-shadow: none;
 }
 
-/* Ensure dropdown options use a dark background */
 .lists-select option {
-	background: #1f2937;
-	color: #fff;
+	background: var(--darker-background-color);
+	color: var(--text-color);
 }
 
