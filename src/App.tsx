@@ -126,7 +126,7 @@ function App() {
           A Natural Scream
         </button>
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
-          <div className="title">Brain Dump</div>
+          <div className="title">Todo Lists</div>
           <div className="lists-header">
             <Lists
               lists={listNames}
