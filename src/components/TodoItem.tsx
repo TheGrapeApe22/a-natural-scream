@@ -46,6 +46,7 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				<img
 					src={todo.starred ? StarFilled : StarEmpty}
 					alt={todo.starred ? "★" : "☆"}
+					className={todo.starred ? "starred" : ""}
 					/>
 			</button>
 			

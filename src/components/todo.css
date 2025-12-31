@@ -126,3 +126,7 @@
 	margin-right: 8px;
 	font-size: 14px;
 }
+
+.starred {
+	filter: brightness(0) saturate(100%) invert(100%) sepia(60%) saturate(2566%) hue-rotate(5deg) brightness(103%) contrast(96%);
+}
