@@ -82,7 +82,7 @@
 /* Color picker popover grid */
 .color-picker-grid {
 	display: grid;
-	grid-template-columns: repeat(4, 24px);
+	grid-template-columns: repeat(5, 24px);
 	gap: 8px;
 	padding: 12px;
 }

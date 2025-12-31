@@ -24,7 +24,7 @@ export default function ColorPicker({ anchorEl, open, onClose, value, onChange }
 						key={c}
 						className={"color-swatch" + (idx === value ? " selected" : "")}
 						style={{ backgroundColor: c }}
-						onClick={() => { onChange(idx); onClose(); }}
+						onClick={() => { onChange(idx); /*onClose();*/ }}
 					/>
 				))}
 			</div>

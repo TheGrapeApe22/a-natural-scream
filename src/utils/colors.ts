@@ -1,10 +1,33 @@
 import convert from 'color-convert';
 
-// Generate 16 evenly spaced hues with full saturation and brightness (HSB)
+/*// Generate 16 evenly spaced hues with full saturation and brightness (HSB)
 export const colors: string[] = Array.from({ length: 16 }, (_, i) => {
     const h = Math.round((i * 360) / 16); // hue degrees
     return '#' + convert.rgb.hex(convert.hsv.rgb(h, 70, 100));
-});
+});*/
+
+export const colors: string[] = [
+    "#ff4c4c",
+    "#ff8f4c",
+    "#ffd24c",
+    "#e8ff4c",
+    "#a5ff4c",
+    "#62ff4c",
+    "#4cff79",
+    "#4cffbc",
+    "#4cffff",
+    "#4cbcff",
+    "#4c79ff",
+    "#624cff",
+    "#a54cff",
+    "#e84cff",
+    "#ff4c8f",
+    "#ff4cd2",
+    "#e369ff",
+    "#ff809eff",
+    "#ff98caff",
+    "#f0a7ffff",
+];
 
 export function getTranslucent(color : string): string {
     return `${color.slice(0,7)}b3`; // 70%
