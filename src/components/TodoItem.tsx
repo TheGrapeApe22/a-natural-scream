@@ -46,7 +46,6 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				<img
 					src={todo.starred ? StarFilled : StarEmpty}
 					alt={todo.starred ? "★" : "☆"}
-					width="36px"
 					/>
 			</button>
 			
@@ -106,7 +105,7 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				</Popover>
 			</div>}
 			<button className="icon-button" onClick={() => onDelete(todo.id)}>
-				<img src={XIcon} alt="✕" width="36px" />
+				<img src={XIcon} alt="✕" />
 			</button>
 		</div>
 	);

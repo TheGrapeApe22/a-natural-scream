@@ -23,7 +23,7 @@ export default function TodoPage({ todos, onChange, onDelete, onAdd, focusId, mi
                 ))}
                 <div className="todo-item">
                     <button onClick={onAdd} className="icon-button">
-                        <img src={PlusIcon} alt="+" width="60px" />
+                        <img src={PlusIcon} alt="+" />
                     </button>
                 </div>
             </div>
