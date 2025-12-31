@@ -70,14 +70,13 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				autoFocus={autoFocus}
 			/>
 			{!minimize && <div className="time-section">
-				<span className="time-text">
-					{formatTimeAMPM(todo.startTime)} – {formatTimeAMPM(todo.endTime)}
-				</span>
 				<button
-					className="icon-button"
+					className="clock-button"
 					onClick={(e) => setTimeAnchor(e.currentTarget)}
 				>
-					<AccessTimeIcon fontSize="small" className="clock-icon" />
+					<span className="time-text">
+						{formatTimeAMPM(todo.startTime)} – {formatTimeAMPM(todo.endTime)}
+					</span>
 				</button>
 				<Popover
 					open={timeOpen}

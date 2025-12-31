@@ -64,7 +64,7 @@
 	height: 20px;
 }
 
-.icon-button:hover {
+.icon-button:hover, .clock-button:hover {
 	background: rgba(121, 121, 121, 0.1);
 }
 
@@ -112,4 +112,17 @@
 	margin-left: 8px;
 	margin-right: 2px;
 	align-self: center;
+}
+
+.clock-button {
+	border: none;
+	background: none;
+	display: flex;
+	align-items: center;
+	color: var(--text-color);
+	cursor: pointer;
+	border-radius: 6px;
+	padding: 4px;
+	margin-right: 8px;
+	font-size: 14px;
 }
