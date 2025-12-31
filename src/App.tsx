@@ -123,7 +123,7 @@ function App() {
           className="startup-link"
           onClick={() => startupState === 'hidden' && setStartupState('entering')}
         >
-          A Natural Scream v1.2
+          A Natural Scream v1.3
         </button>
         <div className={`page ${activeTab === 'todo' ? 'visible' : 'hidden'}`} >
           <div className="title">Todo Lists</div>
