@@ -1,9 +1,8 @@
-import StarFilled from "../assets/ui/star-filled.png";
-import StarEmpty from "../assets/ui/star-empty.png";
+import StarFilled from "../assets/ui/star-filled4.png";
+import StarEmpty from "../assets/ui/star-empty3.png";
 import XIcon from "../assets/ui/x-icon.png";
 import { MobileTimePicker } from "@mui/x-date-pickers";
 import { Popover } from "@mui/material";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { colors } from "../utils/colors";
 import { dateToTimeString, timeStringToDate, formatTimeAMPM } from "../utils/dates";
 import { useState } from "react";
@@ -46,7 +45,7 @@ export default function TodoItem({ todo, onChange, onDelete, autoFocus, minimize
 				<img
 					src={todo.starred ? StarFilled : StarEmpty}
 					alt={todo.starred ? "★" : "☆"}
-					className={todo.starred ? "starred" : ""}
+					className={`${todo.starred ? "starred" : ""} star-image`}
 					/>
 			</button>
 			

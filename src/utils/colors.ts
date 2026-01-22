@@ -1,4 +1,4 @@
-import convert from 'color-convert';
+// import convert from 'color-convert';
 
 /*// Generate 16 evenly spaced hues with full saturation and brightness (HSB)
 export const colors: string[] = Array.from({ length: 16 }, (_, i) => {
